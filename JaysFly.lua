@@ -1,5 +1,5 @@
 -- Made by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: UnofficialJay3
-
+-- Updated one line LOL
 -- Configs
 local keybind = "f" -- Your key to toggle fly mode.
 local vel = 50 -- Your speed for flying.
