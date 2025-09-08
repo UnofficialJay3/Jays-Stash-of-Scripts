@@ -1,3 +1,5 @@
+-- Scripted by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: @UnofficialJay3
+
 local module = {}
 
 -- make a charset with all available characters
