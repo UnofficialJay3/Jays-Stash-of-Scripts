@@ -1,7 +1,7 @@
 task.wait(0.5)
 
 -- The module checker!
-local module local succ=pcall(function()module=require(game.ReplicatedStorage.TheAllInOneModule)end)if not succ then succ=pcall(function()module=loadstring(game:HttpGet("The Link"))()end)end if not succ then print("No can do! Can't get the module.") return end
+local module local succ=pcall(function()module=require(game.ReplicatedStorage.TheAllInOneModule)end)if not succ then succ=pcall(function()module=loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Unofficial-Jays-Stash-Of-Scripts/refs/heads/main/TheAllInOneModule%20script/TheAllInOneModule.lua"))()end)end if not succ then print("No can do! Can't get the module.") return end
 
 
 local z = module.services
