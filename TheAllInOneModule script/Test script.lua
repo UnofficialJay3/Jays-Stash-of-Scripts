@@ -3,7 +3,7 @@
 -- The module checker!
 local module
 local succ = pcall(function()
-	module = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Unofficial-Jays-Stash-Of-Scripts/refs/heads/main/TheAllInOneModule%20script/TheAllInOneModule.lua"))()
+	module = loadstring(game:HttpGet("https://tinyurl.com/35atth4n"))()
 end)
 if not succ then print("Sorry bro. No module founded.") end
 
