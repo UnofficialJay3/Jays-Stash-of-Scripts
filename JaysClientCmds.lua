@@ -18,7 +18,7 @@ local noclipConnection
 -- Get TAIOM module
 local main
 local succ = pcall(function()
-	main = loadstring(game:HttpGet("https://tinyurl.com/35atth4n"))()
+	main = loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()
 end)
 if not succ then print("Sorry bro. No module founded.") end
 

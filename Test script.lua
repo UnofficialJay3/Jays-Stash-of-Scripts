@@ -3,7 +3,7 @@
 -- The module checker!
 local module
 local succ = pcall(function()
-	module = loadstring(game:HttpGet("https://tinyurl.com/35atth4n"))()
+	module = loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()
 end)
 if not succ then print("Sorry bro. No module founded.") end
 
