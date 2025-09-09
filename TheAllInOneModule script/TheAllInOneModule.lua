@@ -1,4 +1,5 @@
 -- Scripted by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: @UnofficialJay3
+-- Need to contain my credits some where!
 
 local module = {}
 
@@ -34,11 +35,13 @@ function module.GetPlayer()
 	local char = player.Character
 	local root = char:WaitForChild("HumanoidRootPart")
 	local hum = char:WaitForChild("Humanoid")
+	local playerGui = player:WaitForChild("PlayerGui")
 	return {
 		player,
 		char,
 		root,
-		hum
+		hum,
+		playerGui
 	}
 end
 
@@ -100,6 +103,7 @@ function module.GetArgs(message, splitter)
 	return string.split(message, splitter or " ")
 end
 
+
 -- Args and command
 function module.GetCommand(message, prefix)
 	if not message then return module.Message("Bro... Send in a message.") end
@@ -108,5 +112,86 @@ function module.GetCommand(message, prefix)
 	table.remove(args, 1)
 	return cmd, args
 end
+
+
+-- Apply linear velocity overrider
+function module.ApplyLinearVelocityOverrider(part)
+	local att = Instance.new("Attachment", part)
+	local LV = Instance.new("LinearVelocity", part)
+	att.Name = module.randomString(10)
+	LV.Name = module.randomString(10)
+	LV.Attachment0 = att
+	LV.ForceLimitMode = Enum.ForceLimitMode.Magnitude
+	LV.MaxForce = 0
+	LV.VectorVelocity = Vector3.zero
+	return LV, att
+end
+
+-- Apply angular velocity overrider
+function module.ApplyAngularVelocityOverrider(part)
+	local att = Instance.new("Attachment", part)
+	local AV = Instance.new("AngularVelocity", part)
+	att.Name = module.randomString(10)
+	AV.Name = module.randomString(10)
+	AV.Attachment0 = att
+	AV.MaxTorque = 0
+	AV.AngularVelocity = Vector3.zero
+	return AV, att
+end
+
+-- Override linear velocity once
+function module.OverrideLinearVelocityOnce(part, velocity)
+	local LV, att = module.ApplyLinearVelocityOverrider(part)
+	LV.MaxForce = math.huge
+	LV.VectorVelocity = velocity
+	task.delay(0,function()
+		LV:Destroy()
+		att:Destroy()
+	end)
+end
+
+-- Override angular velocity once
+function module.OverrideAngularVelocityOnce(part, velocity)
+	local AV, att = module.ApplyAngularVelocityOverrider(part)
+	AV.MaxForce = math.huge
+	AV.VectorVelocity = velocity
+	task.delay(0,function()
+		AV:Destroy()
+		att:Destroy()
+	end)
+end
+
+
+-- Get Single player
+function module.GetSinglePlayer(input)
+	if typeof(input) ~= "string" then
+		warn("Expected string, got:", typeof(input))
+		return nil
+	end
+
+	input = input:lower()
+
+	for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+		local username = player.Name:lower()
+		local displayName = player.DisplayName:lower()
+
+		if username:sub(1, #input) == input or displayName:sub(1, #input) == input then
+			return player
+		end
+	end
+
+	return nil
+end
+
+
+-- Tp plr 2 plr
+function module.Tp(a, b)
+	print("asd")
+	a = a.Character.HumanoidRootPart
+	b = b.Character.HumanoidRootPart
+	a.CFrame = b.CFrame
+end
+
+
 
 return module
