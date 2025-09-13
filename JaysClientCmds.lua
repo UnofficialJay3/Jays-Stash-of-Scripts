@@ -18,7 +18,7 @@ local noclipConnection
 -- Get TAIOM module
 local main
 local succ = pcall(function()
-	main = loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()
+	main = require(game.ReplicatedStorage.TheAllInOneModule)
 end)
 if not succ then print("Sorry bro. No module founded.") end
 
@@ -79,6 +79,7 @@ local function CommandHandler(message)
 	elseif cmd == "infjump" then
 		if infJumpConnection then
 			infJumpConnection:Disconnect()
+			infJumpConnection = nil
 		else
 			infJumpConnection = UserInputService.JumpRequest:Connect(function()
 				hum.Jump = true
