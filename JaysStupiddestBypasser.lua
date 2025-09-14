@@ -3,7 +3,7 @@
 -- May be patched, may not be, but who cares? Just swear in your mind!
 
 -- Load JaysStupiddestBypasser
-loadstring(game:HttpGet("No url yet."))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysStupiddestBypasserObfuscated.lua"))()
 
 -- Here is the bypassing method functions I Used
 
