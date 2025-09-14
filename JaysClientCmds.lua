@@ -18,7 +18,7 @@ local noclipConnection
 -- Get TAIOM module
 local main
 local succ = pcall(function()
-	main = require(game.ReplicatedStorage.TheAllInOneModule)
+	main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))()
 end)
 if not succ then print("Sorry bro. No module founded.") end
 
