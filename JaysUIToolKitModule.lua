@@ -1,4 +1,4 @@
--- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: @UnofficialJay3
+-- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay
 local module = {}
 
 -- Services
@@ -367,9 +367,10 @@ function module.ApplyJaysStyleAuto(ui) -- Has the transp, corner radiuses, and o
 	border.Thickness = 5
 	
 	-- Text label/box
-	if ui:IsA("TextLabel") or ui:IsA("TextBox") then
+	if ui:IsA("TextLabel") or ui:IsA("TextBox") or ui:IsA("TextButton") then
 		ui.TextColor3 = Color3.fromRGB(255,255,255)
 		ui.TextScaled = true
+		ui.Font = Enum.Font.SourceSans
 		
 		local contextual = Instance.new("UIStroke", ui)
 		contextual.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
