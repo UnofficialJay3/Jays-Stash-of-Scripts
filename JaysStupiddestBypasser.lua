@@ -1,9 +1,8 @@
--- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3
-task.wait(1)
+-- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: @UnofficialJay3
 
 -- Module grabber
-local main = require(game.ReplicatedStorage:FindFirstChild("TheAllInOneModule")) or loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()
-local uikit = require(game.ReplicatedStorage:FindFirstChild("JaysUIModuleKit")) or loadstring("No url :(")
+local main = loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()
+local uikit = loadstring(game:HttpGet("https://tinyurl.com/u8v89z3a"))()
 
 
 
