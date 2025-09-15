@@ -13,7 +13,7 @@ local att
 local ltoConnection
 local noclipConnection
 local cfWalkConnection
-local CFWalkModule = loadstring(game:HttpGet("No url :("))()
+local CFWalkModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysCFrameWalk.lua"))()
 
 
 
