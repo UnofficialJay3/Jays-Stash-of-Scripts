@@ -18,7 +18,7 @@ local CFWalkModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 
 -- Module grabber
-local main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))
+local main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))()
 
 -- Services
 local z = main.services
