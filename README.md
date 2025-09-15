@@ -1,12 +1,11 @@
-# Hello dudes and ladies.
-Bro look at this [TheAllInOneModule.lua](https://github.com/UnofficialJay3/Jays-Stash-of-Scripts/blob/main/TheAllInOneModule.lua)
+# Hello non-male? something? And non-femimines. Welcome to my stash
+Welcome to my STASH of scripts, one of the most stupiddest repositories on earth. But not really since github is supporting this repo.
 
-Anyways this is my stash of scripts.
+My scripts are stupid, don't use these.
 
-Use this code to get the TAIOM module:
+LOOK! Look at this module!: [AWESOMEMODULE](https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua)
+Pretty cool right?
 
-`local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))()`
+Now look at this UI toolkit module: [JaysUIToolKitModule.lua](https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysUIToolKitModule.lua)
 
-or:
-
-`local module = loadstring(game:HttpGet("https://tinyurl.com/3nm8m3kc"))()`
+Before my coding exploration, I was a skiddie. I didn't liked that I copied code, I... You know what? I am not making a speech. Just check out my scripts.
