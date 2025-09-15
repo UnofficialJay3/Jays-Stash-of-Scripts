@@ -12,15 +12,13 @@ local AV
 local att
 local ltoConnection
 local noclipConnection
+local cfWalkConnection
+local CFWalkModule = loadstring(game:HttpGet("No url :("))()
 
 
 
--- Get TAIOM module
-local main
-local succ = pcall(function()
-	main = require(game.ReplicatedStorage.TheAllInOneModule)
-end)
-if not succ then print("Sorry bro. No module founded.") end
+-- Module grabber
+local main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))
 
 -- Services
 local z = main.services
@@ -34,9 +32,17 @@ local dJumpP = hum.JumpPower
 hum.UseJumpPower = true
 
 local function UniversalResetter()
-	print("asd")
 	if infJumpConnection then
 		infJumpConnection:Disconnect()
+		infJumpConnection = nil
+	end
+	if cfWalkConnection then
+		cfWalkConnection:Disconnect()
+		cfWalkConnection = nil
+	end
+	if ltoConnection then
+		ltoConnection:Disconnect()
+		ltoConnection = nil
 	end
 	if AV then
 		spinner = false
@@ -136,6 +142,7 @@ local function CommandHandler(message)
 	elseif cmd == "unlto" then
 		if ltoConnection then
 			ltoConnection:Disconnect()
+			ltoConnection = nil
 		end
 	elseif cmd == "noclip" then
 		if noclipConnection then
@@ -158,6 +165,14 @@ local function CommandHandler(message)
 		pcall(function()
 			setfpscap(fps)
 		end)
+	elseif cmd == "cfwalk" then
+		local speed = tonumber(args[1]) or 16
+		
+		if CFWalkModule.Connection and not args[1] then
+			CFWalkModule.Disconnect()
+		else
+			CFWalkModule.Connect(speed)
+		end
 	end
 end
 

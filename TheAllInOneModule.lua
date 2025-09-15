@@ -1,7 +1,6 @@
--- Scripted by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: @UnofficialJay3
--- Need to contain my credits some where!
-
 local module = {}
+
+local uikit = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysUIToolKitModule.lua"))()
 
 -- make a charset with all available characters
 local charset = {}
@@ -60,9 +59,14 @@ function module.Prompter(topText, placeholderText)
 	gui.IgnoreGuiInset = true
 	local box = Instance.new("TextBox", gui)
 	local label = Instance.new("TextLabel", box)
+	uikit.ApplyJaysStyleAuto(box)
+	local c, b = uikit.ApplyJaysStyleAuto(label)
+	c:Destroy()
+	b:Destroy()
 	gui.Name = module.randomString(10)
 	box.Name = module.randomString(10)
 	label.Name = module.randomString(10)
+	
 
 	box.BackgroundColor3 = Color3.new(0,0,0)
 	box.BackgroundTransparency = 0.75
@@ -105,7 +109,7 @@ end
 
 
 -- Args and command
-function module.GetCommand(message, prefix)
+function module.GetCommand(message)
 	if not message then return module.Message("Bro... Send in a message.") end
 	local args = module.GetArgs(message)
 	local cmd = args[1]:lower()
@@ -191,6 +195,25 @@ function module.Tp(a, b)
 	b = b.Character.HumanoidRootPart
 	a.CFrame = b.CFrame
 end
+
+
+-- Get key pressed
+function module.GetKeyHold(key)
+	local UserInputService = game:GetService("UserInputService")
+	key = Enum.KeyCode[key]
+	if UserInputService:GetFocusedTextBox() then return false end
+	return UserInputService:IsKeyDown(key)
+end
+
+
+-- Play animation (by ID)
+function module.PlayAnimationById(id, player) -- Unfinished due to lazyness
+	local character = player.Character
+	local humanoid = character and character:FindFirstChild("Humanoid")
+	local anim = Instance.new("Animation")
+	anim.AnimationId = "rbxassetid://" .. id
+end
+	
 
 
 
