@@ -3,7 +3,7 @@ print("JaysCFrameWalk module - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Ja
 local module = {}
 
 -- Module grabber
-local main = require(game.ReplicatedStorage.TheAllInOneModule)
+local main = loadstring(game:HttpGet("https://github.com/UnofficialJay3/Jays-Stash-of-Scripts/raw/refs/heads/main/TheAllInOneModule.lua"))()
 
 -- Services
 local z = main.services
