@@ -194,7 +194,12 @@ local function CommandHandler(message)
 		else
 			print("No source.")
 		end
-	
+	elseif cmd == "flingo" then
+		hum.Sit = true
+		local intensity = tonumber(args[1]) or 200
+		local a,b,c = (math.random(-5,5)/5)*intensity,(math.random(-5,5)/5)*intensity,(math.random(-5,5)/5)*intensity
+		main.OverrideLinearVelocityOnce(root, Vector3.new(a,b,c))
+		main.OverrideAngularVelocityOnce(root, Vector3.new(-a,c,-b))
 	end
 end
 
