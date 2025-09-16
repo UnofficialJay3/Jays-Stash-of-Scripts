@@ -1,7 +1,5 @@
 -- Made by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: UnofficialJay3
 
-task.wait(0.5)
-
 -- Configs
 local cmdkey = "semicolon"
 
@@ -14,6 +12,8 @@ local ltoConnection
 local noclipConnection
 local cfWalkConnection
 local CFWalkModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysCFrameWalk.lua"))()
+local JaysFlyin = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFly.lua"))()
+local JaysFlyinLoader = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFlyModule.lua"))
 
 
 
@@ -173,6 +173,28 @@ local function CommandHandler(message)
 		else
 			CFWalkModule.Connect(speed)
 		end
+	elseif cmd == "fly" then
+		local value = tonumber(args[1]) or 50
+		JaysFlyin.ChangeSettings({speed = value})
+		JaysFlyin.Connect()
+	elseif cmd == "unfly" then
+		JaysFlyin.Disconnect()
+	elseif cmd == "jaysflyinloader" then
+		print("Loading JaysFlyinLoader.lua")
+		if JaysFlyinLoader then
+			local s, r = pcall(function()
+				return JaysFlyinLoader()
+			end)
+			
+			if s then
+				print("LOADED!!! :D")
+			else
+				print("ERROR LOADING: " .. tostring(r))
+			end
+		else
+			print("No source.")
+		end
+	
 	end
 end
 
