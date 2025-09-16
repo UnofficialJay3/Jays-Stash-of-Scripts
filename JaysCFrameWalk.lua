@@ -3,7 +3,7 @@ print("JaysCFrameWalk module - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Ja
 local module = {}
 
 -- Module grabber
-local main = loadstring(game:HttpGet("https://github.com/UnofficialJay3/Jays-Stash-of-Scripts/raw/refs/heads/main/TheAllInOneModule.lua"))()
+local main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))()
 
 -- Services
 local z = main.services
@@ -16,6 +16,21 @@ local Message = main.Message
 local speed = 16
 module.Connection = nil
 local defaultSpeed
+
+-- Un-TR-AV-er
+player.CharacterAdded:Connect(function()
+	player, char, root, hum = unpack(main.GetPlayer())
+	hum.Died:Connect(function()
+		module.Connection:Disconnect()
+		module.Connection = nil
+	end)
+end)
+
+-- What? I am too lazy, I am going insane. Not really, maybe tiredness?
+hum.Died:Connect(function()
+	module.Connection:Disconnect()
+	module.Connection = nil
+end)
 
 
 -- THE MAIN LANE? Yes it is the main lane.
