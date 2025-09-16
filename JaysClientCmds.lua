@@ -12,8 +12,8 @@ local ltoConnection
 local noclipConnection
 local cfWalkConnection
 local CFWalkModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysCFrameWalk.lua"))()
-local JaysFlyin = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFly.lua"))()
-local JaysFlyinLoader = "https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFlyModule.lua"
+local JaysFlyin = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFlyModule.lua"))()
+local JaysFlyinLoader = "https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFly.lua"
 
 
 
