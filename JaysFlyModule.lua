@@ -5,10 +5,10 @@ local module = {}
 -- Configurations
 module.connection = nil -- The connection for the runservice handling the fly.
 module.speed = 50 -- The speed for your flight.
-module.useCF = false -- If true, you will fly using CFrame instead of using velocity
-module.platformStand = true -- If true, you will be platformstanding while flying.
-module.camRotation = true -- If true, your character will rotate with the lookvector of the camera.
-module.useAnim = true -- If true, you will fly with the fly animation. (R6 and R15) It's basically idle animations so it's more cleaner.
+module.usecf = false -- If true, you will fly using CFrame instead of using velocity
+module.platformstand = true -- If true, you will be platformstanding while flying.
+module.camrotation = true -- If true, your character will rotate with the lookvector of the camera.
+module.useanim = true -- If true, you will fly with the fly animation. (R6 and R15) It's basically idle animations so it's more cleaner.
 local flyAnimR6 = 130025294780390
 local flyAnimR15 = 121812367375506
 
@@ -62,9 +62,23 @@ player.CharacterAdded:Connect(function()
 	-- Player
 	player, char, root, hum, playerGui = unpack(main.GetPlayer())
 	defaultSpeed = hum.WalkSpeed
+	
+	-- Disconnect on DEATH
+	hum.Died:Connect(function()
+		if module.connection then
+			module.connection:Disconnect()
+			module.connection = nil
+		end
+	end)
 end)
 
-
+-- Disconnect on DEATH
+hum.Died:Connect(function()
+	if module.connection then
+		module.connection:Disconnect()
+		module.connection = nil
+	end
+end)
 
 
 -- The Main Lane? ?enaL niaM ehT
@@ -97,6 +111,24 @@ local function StopFlyAnimation()
 end
 
 
+
+-- Change fly settings
+function module.ChangeSettings(data)
+	-- Change da ACTUAL setings B)
+	if data.speed ~= nil then module.speed = data.speed end
+	if data.usecf ~= nil then module.usecf = data.usecf end
+	if data.camrotation ~= nil then module.camrotation = data.camrotation end
+	if data.platformstand ~= nil then module.platformstand = data.platformstand end
+	if data.useanim ~= nil then module.useanim = data.useanim end
+	
+	-- If connection is connected, re-connnect it with the NEW data!
+	if module.connection then
+		module.Connect()
+	end
+end
+
+
+
 -- ApplyVel
 function module.ApplyVel(state)
 	if state then
@@ -117,7 +149,7 @@ function module.Disconnect()
 	if module.connection then
 		module.connection:Disconnect()
 		module.connection = nil
-		hum.WalkSpeed = defaultSpeed
+		--hum.WalkSpeed = defaultSpeed
 		hum.PlatformStand = false
 		hum:ChangeState(Enum.HumanoidStateType.Freefall)
 		module.ApplyVel(false)
@@ -130,7 +162,7 @@ end
 
 
 -- Connect to fly, input a speed value to change your speed.
-function module.Connect(data)
+function module.Connect()
 	-- If the connection is already there, disconnect it.
 	if module.connection then
 		module.connection:Disconnect()
@@ -139,22 +171,15 @@ function module.Connect(data)
 	end
 	
 	-- General Initialization
-	defaultSpeed = hum.WalkSpeed
-	hum.WalkSpeed = 0
+	--defaultSpeed = hum.WalkSpeed -- I don't think having this is necessary. Since of the LV. LMAO!
+	--hum.WalkSpeed = 0
 	
 	module.ApplyVel(true)
 	lv.MaxForce = math.huge
 	av.MaxTorque = math.huge
 	
-	-- Setting fly settings
-	if data.speed ~= nil then module.speed = data.speed end
-	if data.useCF ~= nil then module.useCF = data.useCF end
-	if data.camRotation ~= nil then module.camRotation = data.camRotation end
-	if data.platformStand ~= nil then module.platformStand = data.platformStand end
-	if data.useAnim ~= nil then module.useAnim = data.useAnim end
-	
-	-- If useAnim is on
-	if module.useAnim then PlayFlyAnimation() end
+	-- If useanim is on
+	if module.useanim then PlayFlyAnimation() end
 	
 	
 	-- RunService
@@ -189,7 +214,7 @@ function module.Connect(data)
 		-- Movement
 		if moveVec.Magnitude > 0 then
 			moveVec = moveVec.Unit
-			if module.useCF then
+			if module.usecf then
 				local finalPos = root.Position + moveVec * module.speed * dt
 				root.CFrame = CFrame.new(finalPos) * (root.CFrame - root.Position)
 			else
@@ -200,12 +225,12 @@ function module.Connect(data)
 		end
 		
 		-- Rotation
-		if module.camRotation then
+		if module.camrotation then
 			root.CFrame = CFrame.new(root.Position, root.Position + f)
 		end
 		
 		-- Platform stand
-		if module.platformStand then
+		if module.platformstand then
 			hum.PlatformStand = true
 			hum:ChangeState(Enum.HumanoidStateType.PlatformStanding)
 		end
@@ -219,7 +244,7 @@ function module.ToggleFly(data)
 	if module.connection then
 		module.Disconnect()
 	else
-		module.Connect(data)
+		module.Connect()
 	end
 end
 
