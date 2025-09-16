@@ -1,6 +1,5 @@
 -- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3
--- Note that this is VERY buggy. I feel too lazy to fix some of the bugs here, especially the prompt commands.
-print("JaysFlyin' loader - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3")
+print("JaysFlyin' - Loader - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3")
 
 -- Module grabber
 local JaysFlyin = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFlyModule.lua"))()
@@ -62,34 +61,45 @@ player.CharacterAdded:Connect(THEINITIALIZER)
 
 
 
+local function HandleChangement(name, value)
+	if value == "t" then
+		JaysFlyin.ChangeSettings({[name] = true})
+	elseif value == "f" then
+		JaysFlyin.ChangeSettings({[name] = false})
+	else -- If nothin', then toggle it.
+		local orig = JaysFlyin[name]
+		local new = not orig
+		JaysFlyin.ChangeSettings({[name] = new})
+	end
+	print("Setting " .. name .. " value changed to", JaysFlyin[name])
+end
+
+
+
 local function CommandHandler(text)
 	local cmd, args = main.GetCommand(text)
 	
-	if cmd == "fly" then
-		JaysFlyin.Connect()
-	elseif cmd == "speed" then
-		JaysFlyin.speed = tonumber(args[1]) or 50
-		JaysFlyin.Connect({speed = tonumber(args[1]) or 50})
-	elseif cmd == "unfly" then
-		JaysFlyin.Disconnect()
-	elseif cmd == "cf" then
-		JaysFlyin.useCF = not JaysFlyin.useCF
-		--JaysFlyin.Connect({useCF = z})
-		
+	if cmd == "speed" then
+		local value = tonumber(args[1]) or 50
+		JaysFlyin.ChangeSettings({speed = value})
+		print("Setted speed to " .. value)
+	elseif cmd == "usecf" then
+		HandleChangement("usecf", args[1])
+	elseif cmd == "camrot" then
+		HandleChangement("camrotation", args[1])
 	elseif cmd == "platformstand" then
-		JaysFlyin.platformStand = not JaysFlyin.platformStand
-		JaysFlyin.Connect()
-	elseif cmd == "camrotation" then
-		JaysFlyin.camRotation = not JaysFlyin.camRotation
-		JaysFlyin.Connect()
+		HandleChangement("platformstand", args[1])
 	elseif cmd == "useanim" then
-		JaysFlyin.useAnim = not JaysFlyin.useAnim
-		JaysFlyin.Connect()
+		HandleChangement("useanim", args[1])
+	elseif cmd == "reset" then
+		JaysFlyin.ChangeSettings({speed = 50, useCF = false, camRotation = true, platformStand = true, useAnim = true})
+	elseif cmd == "flingp" then -- Fling Preset
+		JaysFlyin.ChangeSettings({speed = JaysFlyin.speed, usecf = true, camrotation = false, platformstand = false, useanim = false})
 	end
 end
 
 local function Prompter()
-	local box = main.Prompter("T.O.P - JaysFlyin'", "Type a command.")
+	local box = main.Prompter("T.O.P - JaysFlyin'", "Thank you ")
 	task.wait(0)
 	box.FocusLost:Connect(function(ep)
 		CommandHandler(box.Text)
@@ -104,13 +114,7 @@ UserInputService.InputBegan:Connect(function(inp, gp)
 	
 	-- Fly
 	if inp == "f" then
-		JaysFlyin.ToggleFly({
-			speed = 50,
-			useCF = false,
-			camRotation = true,
-			platformStand = true,
-			useAnim = true,
-		})
+		JaysFlyin.ToggleFly()
 	end
 	
 	if inp == "l" then
