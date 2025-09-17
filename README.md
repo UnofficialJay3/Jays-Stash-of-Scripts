@@ -8,4 +8,5 @@ Pretty cool right?
 
 Now look at this UI toolkit module: [JaysUIToolKitModule.lua](https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysUIToolKitModule.lua)
 
-Before my coding exploration, I was a skiddie. I didn't liked that I copied code, I... You know what? I am not making a speech. Just check out my scripts.
+All of these scripts are 99% from me and that 1% was ChatGpt (Sometimes you have to get help ykkk???) and inspiration for making that/this script or something.
+I don't care if you steal my code, it's not obfuscated (Maybe a few that are...)
