@@ -8,7 +8,7 @@ local cmdkey = "semicolon"
 local infJumpConnection
 local spinner = false
 local AV
-local att
+local att -- This is a comment
 local ltoConnection
 local noclipConnection
 local cfWalkConnection
