@@ -1,4 +1,5 @@
--- Made by RBX: @IlIl_ILovAltAccsHAHA / Unofficial Jay | Git: UnofficialJay3
+-- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3
+print("JaysClientCmds - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3")
 
 -- Configs
 local cmdkey = "semicolon"
