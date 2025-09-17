@@ -244,9 +244,9 @@ game:GetService("UserInputService").InputBegan:Connect(function(input, gp)
 	
 	if input == "comma" then
 		bypasser:CaptureFocus()
-		--task.delay(0,function()
+		task.delay(0,function()
 			bypasser.Text = ""
-		--end)
+		end)
 	end
 end)
 
