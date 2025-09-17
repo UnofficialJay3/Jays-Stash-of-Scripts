@@ -3,6 +3,7 @@
 -- Previously obfuscated the script but nah, feelin' generous today.
 
 -- Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3
+print("JaysStuppidestBypasser - Scripted by @IlIl_ILovAltAccsHAHA - Unofficial Jay | Git: UnofficialJay3")
 
 -- Module grabber
 local main = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/TheAllInOneModule.lua"))()
