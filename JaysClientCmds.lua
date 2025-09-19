@@ -255,6 +255,9 @@ local function CommandHandler(message)
 					part.CanCollide = false
 					part.Massless = true
 				end
+				if part.Name == "HumanoidRootPart" then
+					part.CanCollide = false
+				end
 			end
 		end)
 		
