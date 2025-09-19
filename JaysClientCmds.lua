@@ -249,7 +249,7 @@ local function CommandHandler(message)
 		
 		JaysFlyin.Connect()
 		
-		FLINGCONN = RunService.RenderStepped:Connect(function()
+		FLINGCONN = RunService.Stepped:Connect(function()
 			for _, part in ipairs(char:GetDescendants()) do
 				if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
 					part.CanCollide = false
