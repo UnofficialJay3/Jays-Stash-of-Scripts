@@ -15,6 +15,15 @@ local cfWalkConnection
 local CFWalkModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysCFrameWalk.lua"))()
 local JaysFlyin = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFlyModule.lua"))()
 local JaysFlyinLoader = "https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysFly.lua"
+local JaysStupiddestBypasserLoader = "https://raw.githubusercontent.com/UnofficialJay3/Jays-Stash-of-Scripts/refs/heads/main/JaysStupiddestBypasserObfuscated.lua"
+local Lighting = game:GetService("Lighting")
+local defaultLighting = {
+	Brightness = Lighting.Brightness,
+	Ambient = Lighting.Ambient,
+	OutdoorAmbient = Lighting.OutdoorAmbient,
+	GlobalShadows = Lighting.GlobalShadows,
+}
+local FLINGCONN
 
 
 
@@ -45,12 +54,20 @@ local function UniversalResetter()
 		ltoConnection:Disconnect()
 		ltoConnection = nil
 	end
+	if noclipConnection then
+		noclipConnection:Disconnect()
+		noclipConnection = nil
+	end
 	if AV then
 		spinner = false
 		AV:Destroy()
 		AV = nil
 		att:Destroy()
 		att = nil
+	end
+	if FLINGCONN then
+		FLINGCONN:Disconnect()
+		FLINGCONN = nil
 	end
 end
 
@@ -159,7 +176,6 @@ local function CommandHandler(message)
 					end
 				end
 			end)
-
 		end
 	elseif cmd == "fps" then
 		local fps = tonumber(args[1]) or 60
@@ -201,6 +217,77 @@ local function CommandHandler(message)
 		local a,b,c = (math.random(-5,5)/5)*intensity,(math.random(-5,5)/5)*intensity,(math.random(-5,5)/5)*intensity
 		main.OverrideLinearVelocityOnce(root, Vector3.new(a,b,c))
 		main.OverrideAngularVelocityOnce(root, Vector3.new(-a,c,-b))
+	elseif cmd == "jaystupiddestbypasserloader" then
+		print("Loading JaysStupiddestBypasser.lua")
+		if JaysFlyinLoader then
+			local s, r = pcall(function()
+				return loadstring(game:HttpGet(JaysStupiddestBypasserLoader))()
+			end)
+
+			if s then
+				print("LOADED!!! :D")
+			else
+				print("ERROR LOADING: " .. tostring(r))
+			end
+		else
+			print("No source.")
+		end
+	elseif cmd == "nightvision" or cmd == "nv" then
+		-- Nuke the darkness 👊
+		Lighting.Brightness = 2 -- crank up brightness (default is 2)
+		Lighting.Ambient = Color3.new(1, 1, 1) -- pure white = fills in shadowy areas
+		Lighting.OutdoorAmbient = Color3.new(1, 1, 1) -- same for outdoors
+		Lighting.GlobalShadows = false -- turn OFF shadows completely
+	elseif cmd == "unnightvision" or cmd == "unnv" then
+		for i,v in defaultLighting do
+			Lighting[i] = v
+		end
+	elseif cmd == "fling" then
+		print("I promise you. You are spinning on the server side, you can still fling stuff!")
+		local value = tonumber(args[1]) or 1e32 -- PLEASE set this value to a high number. This is why it's called "fling"
+		--JaysFlyin.ChangeSettings({camrotation = false})
+		
+		JaysFlyin.Connect()
+		
+		FLINGCONN = RunService.RenderStepped:Connect(function()
+			for _, part in ipairs(char:GetDescendants()) do
+				if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+					part.CanCollide = false
+					part.Massless = true
+				end
+			end
+		end)
+		
+		local AV, att = main.ApplyAngularVelocityOverrider(root)
+
+		AV.MaxTorque = math.huge
+		AV.AngularVelocity = Vector3.new(-value,value,-value)
+	elseif cmd == "unfling" then
+		if FLINGCONN then
+			--JaysFlyin.ChangeSettings({camrotation = true})
+			local lastCF = root.CFrame
+			
+			FLINGCONN:Disconnect()
+			FLINGCONN = nil
+			
+			hum.Health = 0
+			local h = char:FindFirstChild("Head")
+			if h then h:Destroy() end
+			
+			for _, v in pairs(char:GetChildren()) do
+				if v:IsA("AngularVelocity") or v:IsA("LinearVelocity") then
+					v:Destroy()
+				end
+			end
+			
+			task.spawn(function()
+				player.CharacterAdded:Connect(function()
+					task.wait(0.1)
+					local root = char:WaitForChild("HumanoidRootPart")
+					root.CFrame = lastCF
+				end)
+			end)
+		end
 	end
 end
 
