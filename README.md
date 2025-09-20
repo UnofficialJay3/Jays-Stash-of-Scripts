@@ -10,3 +10,5 @@ Now look at this UI toolkit module: [JaysUIToolKitModule.lua](https://raw.github
 
 All of these scripts are 99% from me and that 1% was ChatGpt (Sometimes you have to get help ykkk???) and inspiration for making that/this script or something.
 I don't care if you steal my code, it's not obfuscated (Maybe a few that are...)
+
+This is a way to show that I am NOT a skiddie. And my epik coding skills.
