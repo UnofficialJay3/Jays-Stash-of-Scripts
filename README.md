@@ -1,4 +1,5 @@
-# Hello non-male? something? And non-femimines. Welcome to my stash
+# Holy discontinuation
+This is discontuned. Don't use these scripts. I am making a NEW repo!!!
 Welcome to my STASH of scripts, one of the most stupiddest repositories on earth. But not really since github is supporting this repo.
 
 My scripts are stupid, don't use these.
